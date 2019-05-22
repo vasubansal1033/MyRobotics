@@ -7,3 +7,6 @@ This repository contains my stuff related to robotics like important links, stan
 2. Photogrammetry Course by Cyrill Stachniss - https://www.youtube.com/watch?v=_mOG_lpPnpY&list=PLgnQpQtFTOGRsi5vzy9PiQpNWHjq-bKN1
 3. University of Toronto Self Driving - https://www.coursera.org/specializations/self-driving-cars?
 4. University of Michigan Mobile Robotics course - http://robots.engin.umich.edu/mobilerobotics/
+
+# Other Links
+1. For Pan tilt Object tracking - https://www.hackster.io/mjrobot/automatic-vision-object-tracking-5575c4
