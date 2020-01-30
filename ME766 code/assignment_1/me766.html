@@ -1,0 +1,332 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>me766</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-09-02"><meta name="DC.source" content="me766.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clear;
+clc;
+
+<span class="comment">% Name - Vasu Bansal    Roll No. - 160776   Course - ME766</span>
+<span class="comment">%--------------------------------------------------------------------------</span>
+
+<span class="comment">% Length of links and width of link</span>
+l1 = input(<span class="string">'Enter the length of link 1: '</span>);
+l2 = input(<span class="string">'Enter the length of link 2: '</span>);
+w = input(<span class="string">'Enter the width of links: '</span>);
+
+link1 = polyshape([0,l1,l1,0],[-w/2,-w/2,w/2,w/2]);
+link2 = polyshape([l1,l1+l2,l1+l2,l1],[-w/2,-w/2,w/2,w/2]);
+
+<span class="comment">%--------------------------------------------------------------------------</span>
+
+<span class="comment">% Plot markers at joints and end affector and Plot settings</span>
+subplot(2,1,2)
+title(<span class="string">'Configuration space'</span>);
+xlim([0 400]);
+ylim([0 400]);
+<span class="comment">% legend('Analytical','Numerical','Location','best');</span>
+
+subplot(2,1,1)
+title(<span class="string">'Workspace'</span>);
+
+xlim([-l1-l2 l1+l2]*1.2);
+ylim([-l1-l2 l1+l2]*1.2);
+
+hold <span class="string">on</span>;
+points = plot([0,l1,l1+l2],[0,0,0],<span class="string">'o'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'black'</span>);
+links = plot([link1 link2],<span class="string">'FaceColor'</span>,[0.1 0.1 0.1]);
+axis <span class="string">equal</span>;
+<span class="comment">%--------------------------------------------------------------------------</span>
+
+<span class="comment">% Obstacles for workspace</span>
+obstacle1 = polyshape([7,15,15,7],[7,7,12,12]);
+obstacle2 = polyshape([7,15,15,7]*-1,[7,7,12,12]*-1);
+obstacle2 = rotate(obstacle2, 45,[-2 -2])
+
+plot(obstacle1,<span class="string">'FaceColor'</span>,<span class="string">'red'</span>);
+plot(obstacle2,<span class="string">'FaceColor'</span>,<span class="string">'blue'</span>)
+<span class="comment">%--------------------------------------------------------------------------</span>
+
+<span class="comment">% Plot settings</span>
+
+ax = gca;
+set(gca,<span class="string">'visible'</span>,<span class="string">'off'</span>);
+set(gca,<span class="string">'xtick'</span>,[]);
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+
+
+w_ = waitforbuttonpress;
+
+<span class="comment">%--------------------------------------------------------------------------</span>
+
+<span class="comment">% Checking collisions</span>
+
+angle_step = 5;
+sangle1 = 0; <span class="comment">% starting angle of link1</span>
+eangle1 = 360; <span class="comment">% end angle of link2</span>
+sangle2 = 0; <span class="comment">% starting angle of link1</span>
+eangle2 = 360; <span class="comment">% end angle of link2</span>
+
+mult = 2*pi/360;
+
+<span class="keyword">for</span> theta1 = sangle1:angle_step:eangle1
+   <span class="keyword">for</span> theta2 = sangle2:angle_step:eangle2
+
+       subplot(2,1,1)
+       <span class="comment">% Deleting to remove the link plot of previous step</span>
+       delete(links);
+       delete(points);
+
+       <span class="comment">% Transformation Matrices</span>
+
+       zero_T_one = [cos(theta1*mult), -sin(theta1*mult), 0, l1*cos(mult*theta1);
+                     sin(theta1*mult),  cos(theta1*mult), 0, l1*sin(mult*theta1);
+                        0,                 0,             1, 0;
+                        0,                 0,             0, 1];
+
+       one_T_two = [cos((theta2-theta1)*mult), -sin((theta2-theta1)*mult), 0, l2*cos((theta2-theta1)*mult);
+                    sin((theta2-theta1)*mult),  cos((theta2-theta1)*mult), 0, l2*sin((theta2-theta1)*mult);
+                        0,                 0,             1,                           0                ;
+                        0,                 0,             0,                           1               ];
+
+       zero_T_two = zero_T_one*one_T_two;
+
+       <span class="comment">% Calculating joint points and end affector points</span>
+       X0 = [0;0;0;1];
+       X1 = zero_T_one*[0;0;0;1];
+       X2 = zero_T_two*[0;0;0;1];
+       points = plot([X0(1),X1(1),X2(1)],[X0(2),X1(2),X2(2)],<span class="string">'o'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'black'</span>,<span class="string">'MarkerEdgeColor'</span>,<span class="string">'black'</span>);
+
+       <span class="comment">% Plotting rotated links</span>
+       link1 = polyshape([0,l1,l1,0],[-w/2,-w/2,w/2,w/2]);
+       link1 = rotate(link1,theta1,[0 0]);
+
+       link2 = polyshape([X1(1) X1(1)+l2 X1(1)+l2 X1(1)],[X1(2)-w/2 X1(2)-w/2 X1(2)+w/2 X1(2)+w/2]);
+       link2 = rotate(link2,theta2,[X1(1) X1(2)]);
+
+       links = plot([link1 link2],<span class="string">'FaceColor'</span>,[0.1 0.1 0.1]);
+
+       <span class="comment">% pause to get an animation effect</span>
+       pause(0.015)
+
+       <span class="comment">% TF stores overlap matrix between the polygons</span>
+       polyvec = [link1,link2,obstacle1,obstacle2];
+       TF = overlaps(polyvec);
+
+       <span class="keyword">if</span>(TF(1,3)==1 || TF(2,3)==1)
+       subplot(2,1,2)
+       hold <span class="string">on</span>
+       plot(theta1,theta2,<span class="string">'o'</span>,<span class="string">'Color'</span>,<span class="string">'red'</span>);
+       <span class="keyword">end</span>
+
+       <span class="keyword">if</span>(TF(1,4)==1 || TF(2,4)==1)
+       subplot(2,1,2)
+       hold <span class="string">on</span>
+       plot(theta1,theta2,<span class="string">'o'</span>,<span class="string">'Color'</span>,<span class="string">'blue'</span>);
+       <span class="keyword">end</span>
+
+   <span class="keyword">end</span>
+
+<span class="keyword">end</span>
+</pre><pre class="codeoutput error">Error using input
+Cannot call INPUT from EVALC.
+
+Error in me766 (line 8)
+l1 = input('Enter the length of link 1: ');
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clear;
+clc;
+
+% Name - Vasu Bansal    Roll No. - 160776   Course - ME766
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% Length of links and width of link
+l1 = input('Enter the length of link 1: ');
+l2 = input('Enter the length of link 2: ');
+w = input('Enter the width of links: ');
+
+link1 = polyshape([0,l1,l1,0],[-w/2,-w/2,w/2,w/2]);
+link2 = polyshape([l1,l1+l2,l1+l2,l1],[-w/2,-w/2,w/2,w/2]);
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% Plot markers at joints and end affector and Plot settings
+subplot(2,1,2)
+title('Configuration space');
+xlim([0 400]);
+ylim([0 400]);
+% legend('Analytical','Numerical','Location','best');
+
+subplot(2,1,1)
+title('Workspace');
+
+xlim([-l1-l2 l1+l2]*1.2);
+ylim([-l1-l2 l1+l2]*1.2);
+
+hold on;
+points = plot([0,l1,l1+l2],[0,0,0],'o','MarkerFaceColor','black');
+links = plot([link1 link2],'FaceColor',[0.1 0.1 0.1]);
+axis equal;
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% Obstacles for workspace
+obstacle1 = polyshape([7,15,15,7],[7,7,12,12]);
+obstacle2 = polyshape([7,15,15,7]*-1,[7,7,12,12]*-1);
+obstacle2 = rotate(obstacle2, 45,[-2 -2])
+
+plot(obstacle1,'FaceColor','red');
+plot(obstacle2,'FaceColor','blue')
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% Plot settings
+
+ax = gca;
+set(gca,'visible','off');
+set(gca,'xtick',[]);
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+
+
+w_ = waitforbuttonpress;
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% Checking collisions
+
+angle_step = 5;
+sangle1 = 0; % starting angle of link1
+eangle1 = 360; % end angle of link2
+sangle2 = 0; % starting angle of link1
+eangle2 = 360; % end angle of link2
+
+mult = 2*pi/360;
+
+for theta1 = sangle1:angle_step:eangle1
+   for theta2 = sangle2:angle_step:eangle2
+       
+       subplot(2,1,1)
+       % Deleting to remove the link plot of previous step
+       delete(links);
+       delete(points);
+       
+       % Transformation Matrices
+       
+       zero_T_one = [cos(theta1*mult), -sin(theta1*mult), 0, l1*cos(mult*theta1);
+                     sin(theta1*mult),  cos(theta1*mult), 0, l1*sin(mult*theta1);
+                        0,                 0,             1, 0;
+                        0,                 0,             0, 1];
+                    
+       one_T_two = [cos((theta2-theta1)*mult), -sin((theta2-theta1)*mult), 0, l2*cos((theta2-theta1)*mult);
+                    sin((theta2-theta1)*mult),  cos((theta2-theta1)*mult), 0, l2*sin((theta2-theta1)*mult);
+                        0,                 0,             1,                           0                ;
+                        0,                 0,             0,                           1               ];
+       
+       zero_T_two = zero_T_one*one_T_two;
+       
+       % Calculating joint points and end affector points
+       X0 = [0;0;0;1];
+       X1 = zero_T_one*[0;0;0;1];
+       X2 = zero_T_two*[0;0;0;1];
+       points = plot([X0(1),X1(1),X2(1)],[X0(2),X1(2),X2(2)],'o','MarkerFaceColor','black','MarkerEdgeColor','black');
+       
+       % Plotting rotated links
+       link1 = polyshape([0,l1,l1,0],[-w/2,-w/2,w/2,w/2]);
+       link1 = rotate(link1,theta1,[0 0]);
+       
+       link2 = polyshape([X1(1) X1(1)+l2 X1(1)+l2 X1(1)],[X1(2)-w/2 X1(2)-w/2 X1(2)+w/2 X1(2)+w/2]);
+       link2 = rotate(link2,theta2,[X1(1) X1(2)]);
+       
+       links = plot([link1 link2],'FaceColor',[0.1 0.1 0.1]);
+       
+       % pause to get an animation effect
+       pause(0.015)  
+       
+       % TF stores overlap matrix between the polygons
+       polyvec = [link1,link2,obstacle1,obstacle2];
+       TF = overlaps(polyvec);
+       
+       if(TF(1,3)==1 || TF(2,3)==1)
+       subplot(2,1,2)
+       hold on
+       plot(theta1,theta2,'o','Color','red');
+       end
+       
+       if(TF(1,4)==1 || TF(2,4)==1)
+       subplot(2,1,2)
+       hold on
+       plot(theta1,theta2,'o','Color','blue');
+       end
+       
+   end
+    
+end
+
+
+
+##### SOURCE END #####
+--></body></html>
